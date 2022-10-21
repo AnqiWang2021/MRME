@@ -1,2 +1,4 @@
+^renv$
+^renv\.lock$
 ^MRME\.Rproj$
 ^\.Rproj\.user$
