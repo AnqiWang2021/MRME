@@ -41,11 +41,12 @@
 #' epsilon = mvrnorm(N,rep(0,2),Sigma)
 #########genetic matrix
 #' G<-rbinom(N*K,n,p)
+#' G = as.matrix(G)
 ######## generate X and Y
 #' X = alpha0 + as.matrix(G)%*%alphav + epsilon[,1]
 #' Y = beta0 + beta1 *X +epsilon[,2]
 ########generate missing X, missing rate 30%
-#' p_miss =  exp(0.25 + 0.6*Y +  as.matrix(G)%*%rep(0.05,1))/(1 + exp(0.25 +0.6*Y + as.matrix(G)%*%rep(0.05,1)))
+#' p_miss =  exp(0.25 + 0.6*Y +  G%*%rep(0.05,1))/(1 + exp(0.25 +0.6*Y + G%*%rep(0.05,1)))
 
 #' maxit = 1000
 #' tol = 1e-8

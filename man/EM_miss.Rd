@@ -50,9 +50,10 @@ alpha0 = 0.13
 alphav = 0.2
 epsilon = mvrnorm(N,rep(0,2),Sigma)
 G<-rbinom(N*K,n,p)
+G = as.matrix(G)
 X = alpha0 + as.matrix(G)\%*\%alphav + epsilon[,1]
 Y = beta0 + beta1 *X +epsilon[,2]
-p_miss =  exp(0.25 + 0.6*Y +  as.matrix(G)\%*\%rep(0.05,1))/(1 + exp(0.25 +0.6*Y + as.matrix(G)\%*\%rep(0.05,1)))
+p_miss =  exp(0.25 + 0.6*Y +  G\%*\%rep(0.05,1))/(1 + exp(0.25 +0.6*Y + G\%*\%rep(0.05,1)))
 maxit = 1000
 tol = 1e-8
 Sigma_start= matrix(c(0.4,0.2,0.2,0.4),2,2)
