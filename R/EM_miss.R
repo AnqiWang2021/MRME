@@ -22,6 +22,37 @@
 #' @export
 #'
 #' @examples
+#' library(MRME)
+#' library(MASS)
+
+#' N = 10000  #the sample size
+#' K = 1     #the number of instrumental variables
+#' n = 2
+#' p = 0.3
+
+#' #Sigma matrix
+#' Sigma = matrix(c(0.58,0.35,0.35,0.58),2,2)
+
+######parameter set
+#' beta0 = 0.8
+#' beta1 = 0.2
+#' alpha0 = 0.13
+#' alphav = 0.2
+#' epsilon = mvrnorm(N,rep(0,2),Sigma)
+#########genetic matrix
+#' G<-rbinom(N*K,n,p)
+######## generate X and Y
+#' X = alpha0 + as.matrix(G)%*%alphav + epsilon[,1]
+#' Y = beta0 + beta1 *X +epsilon[,2]
+########generate missing X, missing rate 30%
+#' p_miss =  exp(0.25 + 0.6*Y +  as.matrix(G)%*%rep(0.05,1))/(1 + exp(0.25 +0.6*Y + as.matrix(G)%*%rep(0.05,1)))
+
+#' maxit = 1000
+#' tol = 1e-8
+#' Sigma_start= matrix(c(0.4,0.2,0.2,0.4),2,2)
+#' para_start = c(0.6,0.1,rep(0.05,2))
+
+#' result = EM_miss(para_start,Sigma_start,G,Y,X,maxit,tol)
 
 EM_miss = function(para_start,Sigma_start,G,Y,X,maxit,tol){
   R = rep(1,length(X))
