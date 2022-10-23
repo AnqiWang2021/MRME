@@ -29,6 +29,7 @@ EM_miss = function(para_start,Sigma_start,G,Y,X,maxit,tol){
   X[which(is.na(X)==TRUE)]=0
   G = as.matrix(G)
   K = ncol(G)
+  N = length(X)
   para = para_start
   Sigma = Sigma_start
   #######calculate the expectation
