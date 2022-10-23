@@ -22,8 +22,7 @@
 #' @export
 #'
 #' @examples
-#' library
-library(MASS)
+
 EM_miss = function(para_start,Sigma_start,G,Y,X,maxit,tol){
   R = rep(1,length(X))
   R[which(is.na(X)==TRUE)]=0
