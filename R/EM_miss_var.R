@@ -1,11 +1,31 @@
+#' Calculate the covariance matrix
+#'
+#' \code{EM_miss_var} Consider the louis formula to calculate the covariance matrix.
+#' @param Sigma_est A vector, the estimates of covariance matrix of error terms.
+#' @param par_est A vector, the estimates for beta and alpha.  Beta is the parameter in the linear regression model of
+#'    response variable and exposure variable of interest. Alpha is the parameter in the linear regression model of exposure variable
+#'    and genetic matrix.
+#' @param G A numeric matrix of genetic variants.
+#' @param Y A numeric vector of the outcome variable.
+#' @param X A numeric vector of the exposure variable.
+#'
+#' @return A list
+#' \describe{
+#' \item{cov_matrix}{the covariance matrix of the final estimates for beta and alpha.}
+#' \item{se}{the variance of the final estimates for beta and alpha}
+#'  }
+#' @export
+#'
 EM_miss_var = function(Sigma_est, par_est, G,Y,X){
 
   R = rep(1,length(X))
   R[which(is.na(X)==TRUE)]=0
-  X[which(is.na(X)==TRUE)]=0
+  X[which(is.na(X)==TRUE)]=
+    0
 
   G = as.matrix(G)
   K = ncol(G)
+  N = length(X)
   Omega_est<-solve(Sigma_est) #the estimate of the inverse matrix of Sigma
   beta0_est = par_est[1]
   beta1_est = par_est[2]

@@ -5,7 +5,7 @@
 #'
 #' @param para_start numeric vectors of starting values for beta and alpha. Beta is the parameter in the linear regression model of
 #'    response variable and exposure variable of interest. Alpha is the parameter in the linear regression model of exposure variable
-#'    and
+#'    and genetic matrix.
 #' @param Sigma_start numeric vectors of starting values for Sigma, Sigma is the covariance matrix of the error terms.
 #' @param G A numeric matrix of genetic variants
 #' @param Y A numeric vector of the outcome variable
