@@ -3,8 +3,8 @@
 #' \code{EM_miss} Estimate parameters using the expectation-maximization algorithm based on the complete log-likelihood
 #'    of observed exposure data in the presence of missing data.
 #'
-#' @param para_start numeric vectors of starting values for beta and alpha. Beta is the parameter in the linear regression model of
-#'    response variable and exposure variable of interest. Alpha is the parameter in the linear regression model of exposure variable
+#' @param para_start numeric vectors of starting values for beta and gamma. Beta is the parameter in the linear regression model of
+#'    response variable and exposure variable of interest. Gamma is the parameter in the linear regression model of exposure variable
 #'    and genetic matrix.
 #' @param Sigma_start numeric vectors of starting values for Sigma, Sigma is the covariance matrix of the error terms.
 #' @param G A numeric matrix of genetic variants
@@ -17,7 +17,7 @@
 #' \describe{
 #' \item{step}{number of iterations of the estimation algorithm}
 #' \item{Sigma}{the final estimates of the covariance matrix.}
-#' \item{para}{the final estimates of the parameters organized as (beta and alpha).}
+#' \item{para}{the final estimates of the parameters organized as (beta and gamma).}
 #' }
 #' @export
 #'
@@ -36,14 +36,14 @@
 ######parameter set
 #' beta0 = 0.8
 #' beta1 = 0.2
-#' alpha0 = 0.13
-#' alphav = 0.2
+#' gamma0 = 0.13
+#' gammav = 0.2
 #' epsilon = mvrnorm(N,rep(0,2),Sigma)
 #########genetic matrix
 #' G<-rbinom(N*K,n,p)
 #' G = as.matrix(G)
 ######## generate X and Y
-#' X = alpha0 + as.matrix(G)%*%alphav + epsilon[,1]
+#' X = gamma0 + as.matrix(G)%*%gammav + epsilon[,1]
 #' Y = beta0 + beta1 *X +epsilon[,2]
 ########generate missing X, missing rate 30%
 #' p_miss =  exp(0.25 + 0.6*Y +  G%*%rep(0.05,1))/(1 + exp(0.25 +0.6*Y + G%*%rep(0.05,1)))

@@ -9,8 +9,8 @@ EM_miss_var(Sigma_est, par_est, G, Y, X)
 \arguments{
 \item{Sigma_est}{A vector, the estimates of covariance matrix of error terms.}
 
-\item{par_est}{A vector, the estimates for beta and alpha.  Beta is the parameter in the linear regression model of
-response variable and exposure variable of interest. Alpha is the parameter in the linear regression model of exposure variable
+\item{par_est}{A vector, the estimates for beta and gamma.  Beta is the parameter in the linear regression model of
+response variable and exposure variable of interest. Gamma is the parameter in the linear regression model of exposure variable
 and genetic matrix.}
 
 \item{G}{A numeric matrix of genetic variants.}
@@ -22,8 +22,8 @@ and genetic matrix.}
 \value{
 A list
 \describe{
-\item{cov_matrix}{the covariance matrix of the final estimates for beta and alpha.}
-\item{se}{the variance of the final estimates for beta and alpha}
+\item{cov_matrix}{the covariance matrix of the final estimates for beta and gamma.}
+\item{se}{the variance of the final estimates for beta and gamma}
 }
 }
 \description{

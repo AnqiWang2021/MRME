@@ -7,8 +7,8 @@
 EM_miss(para_start, Sigma_start, G, Y, X, maxit, tol)
 }
 \arguments{
-\item{para_start}{numeric vectors of starting values for beta and alpha. Beta is the parameter in the linear regression model of
-response variable and exposure variable of interest. Alpha is the parameter in the linear regression model of exposure variable
+\item{para_start}{numeric vectors of starting values for beta and gamma. Beta is the parameter in the linear regression model of
+response variable and exposure variable of interest. Gamma is the parameter in the linear regression model of exposure variable
 and genetic matrix.}
 
 \item{Sigma_start}{numeric vectors of starting values for Sigma, Sigma is the covariance matrix of the error terms.}
@@ -28,7 +28,7 @@ A list
 \describe{
 \item{step}{number of iterations of the estimation algorithm}
 \item{Sigma}{the final estimates of the covariance matrix.}
-\item{para}{the final estimates of the parameters organized as (beta and alpha).}
+\item{para}{the final estimates of the parameters organized as (beta and gamma).}
 }
 }
 \description{
@@ -46,12 +46,12 @@ p = 0.3
 Sigma = matrix(c(0.58,0.35,0.35,0.58),2,2)
 beta0 = 0.8
 beta1 = 0.2
-alpha0 = 0.13
-alphav = 0.2
+gamma0 = 0.13
+gammav = 0.2
 epsilon = mvrnorm(N,rep(0,2),Sigma)
 G<-rbinom(N*K,n,p)
 G = as.matrix(G)
-X = alpha0 + as.matrix(G)\%*\%alphav + epsilon[,1]
+X = gamma0 + as.matrix(G)\%*\%gammav + epsilon[,1]
 Y = beta0 + beta1 *X +epsilon[,2]
 p_miss =  exp(0.25 + 0.6*Y +  G\%*\%rep(0.05,1))/(1 + exp(0.25 +0.6*Y + G\%*\%rep(0.05,1)))
 maxit = 1000
